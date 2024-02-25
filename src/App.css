@@ -38,16 +38,13 @@ body {
   border-radius: 25px;
   color: white;
   padding: 10px;
-  z-index: 2;
 }
 
 .cam {
   border:8px solid black;
   border-radius: 25px;
-  border-color:  #1298ff;
+  border-color:  #ffffff;
   width: 30%;
-  position: relative;
-  
 }
 
 
@@ -65,20 +62,38 @@ body {
 .img {
   border:8px solid black;
   border-radius: 25px;
-  border-color:  #1298ff;
+  border-color:  #4CAF50;
 }
 
 .button {
-
   /* background-color: #d4d4d4; */
   color: white;
   filter: invert(100%);
-  width: 6%;
+  width: 4%;
   margin-top: 3px;
   text-align: center;
   font-size: 1.5rem;
   cursor: pointer;
   transition: 0.3s;
-  z-index: 1;
 
+}
+
+
+.reset-button {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* No borders */
+  color: white; /* White text */
+  padding: 13px 25px; /* Some padding */
+  text-align: center; /* Center-aligned text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Use inline-block */
+  font-size: 16px; /* Set font-size */
+  margin: 10px 0px; /* Margin for spacing */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 8px; /* Rounded corners */
+  transition: background 0.3s ease; /* Smooth background transition */
+}
+
+.reset-button:hover {
+  background-color: #45a049; /* Darker green background on hover */
 }
