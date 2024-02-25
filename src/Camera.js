@@ -4,9 +4,9 @@ import Webcam from 'react-webcam';
 function Camera () {
     
     return (
-        <div >
-            <Webcam className='cam' mirrored={true} width={854} />
-        </div>
+        // <div >
+            <Webcam className='cam' mirrored={true}   />
+        // </div>
     );
 }
 
