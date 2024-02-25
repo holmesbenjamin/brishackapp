@@ -3,7 +3,7 @@ import Webcam from "react-webcam";
 import Button from "./Button";
 import "./App.css"; // Make sure to import the CSS file
 
-function Camera() {
+function Camera(props) {
   const [img, setImg] = useState(null);
   const webcamRef = useRef(null);
 
@@ -24,6 +24,9 @@ function Camera() {
 
   const handleSubmit = async (data) => {
     console.log(data);
+
+    props.onLoad();
+
     const response = await fetch("/upload", {
       method: "POST",
       headers: {
@@ -32,6 +35,10 @@ function Camera() {
       body: JSON.stringify(data),
     });
     let json = await response.json();
+
+    props.onFinish(json);
+
+    console.log(json);
   };
 
   return (
@@ -62,4 +69,4 @@ function Camera() {
   );
 }
 
-export default Camera
+export default Camera;

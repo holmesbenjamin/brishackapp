@@ -41,7 +41,7 @@ body {
 }
 
 .cam {
-  border:8px solid black;
+  border:6px solid black;
   border-radius: 25px;
   border-color:  #ffffff;
   width: 30%;
@@ -59,14 +59,25 @@ body {
   border:8px solid white;
 }
 
-.img {
-  border:8px solid black;
-  border-radius: 25px;
-  border-color:  #4CAF50;
+.img-wrapper {
+  border: 8px solid #4CAF50; /* Your desired border color */
+  border-radius: 25px; /* Matched with your img border-radius */
+  display: inline-block; /* Or as per your layout requirements */
 }
 
+.img {
+  width: 100%; /* Ensure the image fills the wrapper */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 17px; /* Adjusted to fit inside the wrapper border */
+  /* Removed the border styles from .img since it's now on .img-wrapper */
+}
+
+.img-greyed-out {
+  filter: brightness(50%);
+}
+
+
 .button {
-  /* background-color: #d4d4d4; */
   color: white;
   filter: invert(100%);
   width: 4%;
@@ -80,20 +91,20 @@ body {
 
 
 .reset-button {
-  background-color: #4CAF50; /* Green background */
-  border: none; /* No borders */
-  color: white; /* White text */
-  padding: 13px 25px; /* Some padding */
-  text-align: center; /* Center-aligned text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Use inline-block */
-  font-size: 16px; /* Set font-size */
-  margin: 10px 0px; /* Margin for spacing */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 8px; /* Rounded corners */
-  transition: background 0.3s ease; /* Smooth background transition */
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 13px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
 .reset-button:hover {
-  background-color: #45a049; /* Darker green background on hover */
+  background-color: #45a049;
 }
