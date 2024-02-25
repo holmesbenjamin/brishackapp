@@ -5,18 +5,22 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #2b2b2b;
+}
+
+body {
+  background-color: #2b2b2b;
 }
 
 .app-title {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 20px; 
   font-family: 'Arial', sans-serif; 
   font-size: 2rem; 
 }
 
 .data-display {
-  background-color: white;
+  background-color: rgb(27, 27, 27);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
