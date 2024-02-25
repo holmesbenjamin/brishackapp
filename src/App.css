@@ -32,11 +32,13 @@ body {
 .blurb {
   margin-top: 30px;
   /* border: 8px solid #1c1c1c; */
-  width: 50%;
+  width: 30%;
+  margin-top: -25px;
   background-color: #636363;
   border-radius: 25px;
   color: white;
   padding: 10px;
+  z-index: 2;
 }
 
 .cam {
@@ -44,12 +46,13 @@ body {
   border-radius: 25px;
   border-color:  #1298ff;
   width: 30%;
+  position: relative;
   
 }
 
 
 .logo {
-  width: 10%;
+  width: 7%;
   height: auto;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -59,9 +62,24 @@ body {
   border:8px solid white;
 }
 
+<<<<<<< HEAD
 .img {
   border:8px solid black;
   border-radius: 25px;
   border-color:  #1298ff;
 
+=======
+.button {
+
+  background-color: #d4d4d4;
+  color: white;
+  filter: invert(100%);
+  width: 6%;
+  margin-top: 3px;
+  text-align: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1;
+>>>>>>> Button
 }
