@@ -6,14 +6,18 @@ import Logo from './Logo';
 function App() {
   
 
-  return (
+  return ( 
+    <>
+
     <div className="app-container">
-      <Logo/>
-      <h1 className="app-title">FruitCam</h1> 
+    <Logo/>
+      {/* <h1 className="app-title">FruitCam</h1>  */}
       <Camera />
+
       <Blurb />
      
     </div>
+    </>
   );
 }
 
