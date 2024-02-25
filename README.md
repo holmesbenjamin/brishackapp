@@ -3,15 +3,23 @@
 
 ### Install
 Install packages:
-```npm i```
+```
+npm i
+```
 
 Install flask
-```pip3 install flask```
+```
+pip3 install flask
+```
 
 ### Run
 Run front-end
-```npm start```
+```
+npm start
+```
 
 
 Run flask
-```cd flask-server; python3 server.py```
+```
+cd flask-server; python3 server.py
+```
