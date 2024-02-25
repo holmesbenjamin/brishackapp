@@ -1,34 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 
-
-function Blurb() { 
-
-  const [data, setData] = useState([{}]);
-
-  useEffect(() => {
-    fetch('/classify')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
+function Blurb() {
+  const [blurb, setBlurb] = useState([""]);
 
   return (
-    <div className='blurb'>
-      {data.length > 0 ? (
-        data.map((item, i) => (
-          <p key={i} className="data-item">{item.class}</p>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="blurb">
+      <p>{blurb}</p>
     </div>
   );
-  
-  
-  
-
 }
 
 export default Blurb;
