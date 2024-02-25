@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; 
+import Camera from './Camera';
 
 function App() {
   const [data, setData] = useState([{}]);
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className="app-container">
       <h1 className="app-title">Zesty Fruits</h1> 
+      <Camera />
       <div className="data-display">
         {data.test ? (
           data.test.map((test, i) => (
@@ -25,6 +27,7 @@ function App() {
           <p>Loading...</p>
         )}
       </div>
+     
     </div>
   );
 }

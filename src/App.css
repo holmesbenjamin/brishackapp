@@ -33,3 +33,15 @@ body {
   border-radius: 4px;
   color: #333;
 }
+
+/* .cam {
+  border:8px solid black;
+  border-radius: 25px;
+  border-color: #1298ff;
+} */
+
+.cam {
+  border:8px solid black;
+  border-radius: 25px;
+  border-color:  #1298ff;
+}
