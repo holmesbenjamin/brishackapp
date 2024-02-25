@@ -21,7 +21,7 @@ function Template () {
     }, [])
 
     // 4. Return some JSX (html)
-    return (<div>{data}</div>);
+    return (<div>{data['key']}</div>);
 }
 
 // 5. Export function
