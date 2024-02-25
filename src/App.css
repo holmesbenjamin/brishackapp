@@ -46,3 +46,15 @@ body {
   width: 50%;
   
 }
+
+
+.logo {
+  width: 10%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  border:8px solid white;
+}
