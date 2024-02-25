@@ -6,7 +6,7 @@ function Blurb() {
   const [data, setData] = useState([{}]);
 
   useEffect(() => {
-    fetch('/test')
+    fetch('/classify')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -15,16 +15,19 @@ function Blurb() {
   }, []);
 
   return (
-        <div className='blurb'>
-            {data.test ? (
-          data.test.map((test, i) => (
-            <p key={i} className="data-item">{test}</p>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
-        </div>
-      ); 
+    <div className='blurb'>
+      {data.length > 0 ? (
+        data.map((item, i) => (
+          <p key={i} className="data-item">{item.class}</p>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+  
+  
+  
 
 }
 
