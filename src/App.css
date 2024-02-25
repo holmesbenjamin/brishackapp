@@ -62,13 +62,12 @@ body {
   border:8px solid white;
 }
 
-<<<<<<< HEAD
 .img {
   border:8px solid black;
   border-radius: 25px;
   border-color:  #1298ff;
+}
 
-=======
 .button {
 
   background-color: #d4d4d4;
@@ -81,5 +80,5 @@ body {
   cursor: pointer;
   transition: 0.3s;
   z-index: 1;
->>>>>>> Button
+
 }
