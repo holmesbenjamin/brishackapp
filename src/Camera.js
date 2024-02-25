@@ -8,12 +8,28 @@ function Camera() {
   const capture = useCallback(() => {
     console.log("cunt");
     const imageSrc = webcamRef.current.getScreenshot();
+    console.log(imageSrc);
+    handleSubmit(imageSrc);
     setImg(imageSrc);
   }, [webcamRef]);
   const refresh = useCallback(() => {
     console.log("fag");
     setImg(null);
   }, []);
+
+  const handleSubmit = async (data) => {
+    console.log(data);
+    const response = await fetch("/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let json = await response.json();
+    console.log(json);
+  };
+
   return (
     <>
       {img === null ? (
