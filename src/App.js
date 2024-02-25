@@ -3,6 +3,9 @@ import './App.css';
 import Camera from './Camera';
 import Blurb from './Blurb';
 import Logo from './Logo';
+import Button from './Button';
+
+
 function App() {
   
 
@@ -13,6 +16,8 @@ function App() {
     <Logo/>
       {/* <h1 className="app-title">FruitCam</h1>  */}
       <Camera />
+
+      <Button />
 
       <Blurb />
      
