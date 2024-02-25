@@ -10,7 +10,7 @@ function Camera() {
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
   }, [webcamRef]);
-  const refresh = useCallback(()=>{
+  const refresh = useCallback(() => {
     console.log("fag");
     setImg(null);
   }, []);
@@ -24,22 +24,14 @@ function Camera() {
             screenshotFormat="image/jpeg"
             ref={webcamRef}
           />
-          <Button callback={capture}/>
-         
+          <Button callback={capture} />
         </>
       ) : (
         <>
           <img src={img} className="img" alt="captured" />
-          <button
-            onClick={refresh}
-          >
-
-            Reset
-
-          </button>
+          <button onClick={refresh}>Reset</button>
         </>
       )}
-      
     </>
   );
 }
