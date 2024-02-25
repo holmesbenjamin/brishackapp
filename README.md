@@ -1,14 +1,14 @@
 # Fruit Detector app
 
 
-# Install
+### Install
 Install packages:
-```npm i``
+```npm i```
 
 Install flask
-```pip3 install flask``
+```pip3 install flask```
 
-# Run
+### Run
 Run front-end
 ```npm start```
 
