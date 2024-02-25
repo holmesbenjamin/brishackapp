@@ -5,7 +5,7 @@ function Camera () {
     
     return (
         // <div >
-            <Webcam className='cam' mirrored={true}   />
+            <Webcam className='cam' mirrored={true}    />
         // </div>
     );
 }
