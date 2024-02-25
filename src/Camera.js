@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Webcam from "react-webcam";
+import Button from "./Button";
 // import './App.css';
 function Camera() {
   const [img, setImg] = useState(null);
   const webcamRef = useRef(null);
   const capture = useCallback(() => {
+    console.log("cunt");
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
-  }, [webcamRef, setImg]);
+  }, [webcamRef]);
+  const refresh = useCallback(()=>{
+    console.log("fag");
+    setImg(null);
+  }, []);
   return (
     <>
       {img === null ? (
@@ -18,20 +24,22 @@ function Camera() {
             screenshotFormat="image/jpeg"
             ref={webcamRef}
           />
-          <button onClick={capture}>Capture</button>
+          <Button callback={capture}/>
+         
         </>
       ) : (
         <>
           <img src={img} className="img" alt="captured" />
           <button
-            onClick={() => {
-              setImg(null);
-            }}
+            onClick={refresh}
           >
-            Recapture
+
+            Reset
+
           </button>
         </>
       )}
+      
     </>
   );
 }

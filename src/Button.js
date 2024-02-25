@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import button from './Button.svg';
 
-function Button() {
-    return <img src={button} className='button' />;
+function Button(props) {
+    const callback = useCallback(props.callback, [])
+    return <img src={button} className='button' onClick={callback} />;
 }  
 
 export default Button

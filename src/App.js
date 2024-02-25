@@ -17,8 +17,6 @@ function App() {
       {/* <h1 className="app-title">FruitCam</h1>  */}
       <Camera />
 
-      <Button />
-
       <Blurb />
      
     </div>
