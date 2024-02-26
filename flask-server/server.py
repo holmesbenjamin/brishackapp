@@ -7,6 +7,7 @@ from io import BytesIO
 from rembg import remove 
 from PIL import Image
 from openai import OpenAI
+import os
 app = Flask(__name__)
 
 client = OpenAI(
@@ -104,31 +105,22 @@ def upload():
     message = get_message("Give me the nutritional values of 1 " + res + " and the health benefits of these molecules.")
     return {"upload": message}
 
+@app.route('/classify')
 def classify_images():
-    return "Apple"
-    # Specify the directory containing images (Adjust the path as necessary)
-    #test_subset = "C:\\Users\\benho\\OneDrive\\Desktop\\Ben\\Programs\\BH2024(2)\\brishackapp\\real_assets"
-    test_subset = "./real_assets"
-    test_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-        test_subset,
-        seed=42,
-        shuffle=True,
-        image_size=(IMAGE_SIZE, IMAGE_SIZE),
-        batch_size=1  
-    )
-
+    path = "./real_assets/Assets/test.jpeg"
+    image = tf.keras.preprocessing.image.load_img(path, target_size=(IMAGE_SIZE, IMAGE_SIZE))
+    img_array = tf.keras.preprocessing.image.img_to_array(image)
+    img_array = tf.expand_dims(img_array, 0)  # Model expects a batch of images
     predictions = []
-    for images, _ in test_dataset.take(1):  # Adjust the number of images as needed
-        img_array = tf.keras.preprocessing.image.img_to_array(images[0])
-        img_array = tf.expand_dims(img_array, 0)  # Model expects a batch of images
-        preds = model.predict(img_array)
-        predicted_class = tr_class_names[np.argmax(preds[0])]
-        confidence = round(100 * (np.max(preds[0])), 2)
-        if confidence > 85:
-            predictions.append({"class": predicted_class, "confidence": confidence})
-        else:
-            predictions.append({"class": "No Fruit Detected", "confidence": 0})
-    return predictions
+    preds = model.predict(img_array)
+    predicted_class = tr_class_names[np.argmax(preds[0])]
+    confidence = round(100 * (np.max(preds[0])), 2)
+    if confidence > 75:
+        predictions.append({"class": predicted_class, "confidence": confidence})
+    else:
+        predictions.append({"class": "No Fruit Detected", "confidence": 0})
+    os.remove("./real_assets/Assets/test.jpeg")
+    return jsonify(predictions)
 
 @app.route('/test')
 def test():
