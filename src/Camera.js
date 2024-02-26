@@ -13,7 +13,9 @@ function Camera(props) {
     handleSubmit(imageSrc);
     setImg(imageSrc);
   }, [webcamRef]);
-
+  const refreshPage = () => {
+    window.location.reload();
+  };
   const refresh = useCallback(() => {
     setImg(null);
   }, []);
@@ -61,8 +63,8 @@ function Camera(props) {
             {/* New wrapper with border */}
             <img src={img} className={imageClassName} alt="captured" />
           </div>
-          <button onClick={refresh} className="reset-button">
-            Reset
+          <button onClick={refreshPage} className="reset-button">
+            Send and Reset
           </button>
         </>
       )}
