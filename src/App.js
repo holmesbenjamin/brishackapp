@@ -6,27 +6,25 @@ import Logo from "./Logo";
 import Button from "./Button";
 
 function App() {
-
-  const [blurb, setBlurb] = useState("Take a picture of a fruit to identify it.");
+  const [blurb, setBlurb] = useState(
+    "Take a picture of a fruit to identify it"
+  );
 
   const onLoad = () => {
-    setBlurb("Loading...");
+    setBlurb("Processing image...");
   };
 
   const onFinish = (data) => {
-   setBlurb(data); 
+    setBlurb(data);
   };
-
-
-
 
   return (
     <>
       <div className="app-container">
         <Logo />
         {/* <h1 className="app-title">FruitCam</h1>  */}
-        <Camera onLoad={onLoad} onFinish={onFinish}/>
-        <Blurb text={blurb}/>
+        <Camera onLoad={onLoad} onFinish={onFinish} />
+        <Blurb text={blurb} />
       </div>
     </>
   );

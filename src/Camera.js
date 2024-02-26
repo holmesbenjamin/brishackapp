@@ -23,7 +23,7 @@ function Camera(props) {
   const imageClassName = img ? "img img-greyed-out" : "img";
 
   const handleSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
 
     props.onLoad();
 
@@ -34,11 +34,12 @@ function Camera(props) {
       },
       body: JSON.stringify(data),
     });
+
+    console.log("test");
+    console.log(response.toString());
     let json = await response.json();
-
-    props.onFinish(json);
-
-    console.log(json);
+    console.log("test2");
+    props.onFinish(json["upload"]);
   };
 
   return (

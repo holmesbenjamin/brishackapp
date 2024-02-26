@@ -6,53 +6,83 @@ import base64
 from io import BytesIO
 from rembg import remove 
 from PIL import Image
-
+from openai import OpenAI
 app = Flask(__name__)
 
+client = OpenAI(
+    # This is the default and can be omitted
+    api_key="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",
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "Who is the prime minister of the UK",
+        }
+    ],
+    model="gpt-3.5-turbo",
+)
+print(chat_completion.choices[0].message.content)
 # Load the trained model (Adjust the path as necessary)
 #model_path = 'C:\\Users\\benho\\OneDrive\\Desktop\\Ben\\Programs\\BH2024(2)\\brishackapp\\FruitModel.keras'
-model_path = './FruitModel.keras'
-model = load_model(model_path)
-IMAGE_SIZE = 100
-#All possible fruits
-tr_class_names = ['Apple Braeburn',
- 'Apple Crimson Snow',
- 'Apple Golden 1',
- 'Apple Golden 2',
- 'Apple Golden 3',
- 'Apple Granny Smith',
- 'Apple Pink Lady',
- 'Apple Red 1',
- 'Apple Red 2',
- 'Apple Red 3',
- 'Apple Red Delicious',
- 'Apple Red Yellow 1',
- 'Apple Red Yellow 2',
- 'Banana',
- 'Banana Lady Finger',
- 'Banana Red',
- 'Cherry 1',
- 'Cherry 2',
- 'Cherry Rainier',
- 'Cherry Wax Black',
- 'Cherry Wax Red',
- 'Cherry Wax Yellow',
- 'Grape Blue',
- 'Grape Pink',
- 'Grape White',
- 'Grape White 2',
- 'Grape White 3',
- 'Grape White 4',
- 'Grapefruit Pink',
- 'Grapefruit White',
- 'Guava',
- 'Lychee',
- 'Pineapple',
- 'Pineapple Mini',
- 'Rambutan',
- 'Raspberry',
- 'Redcurrant',
- 'Salak']
+# model_path = './FruitModel.keras'
+# model = NewModel()
+# IMAGE_SIZE = 100
+# #All possible fruits
+# tr_class_names = ['Apple Braeburn',
+#  'Apple Crimson Snow',
+#  'Apple Golden 1',
+#  'Apple Golden 2',
+#  'Apple Golden 3',
+#  'Apple Granny Smith',
+#  'Apple Pink Lady',
+#  'Apple Red 1',
+#  'Apple Red 2',
+#  'Apple Red 3',
+#  'Apple Red Delicious',
+#  'Apple Red Yellow 1',
+#  'Apple Red Yellow 2',
+#  'Banana',
+#  'Banana Lady Finger',
+#  'Banana Red',
+#  'Cherry 1',
+#  'Cherry 2',
+#  'Cherry Rainier',
+#  'Cherry Wax Black',
+#  'Cherry Wax Red',
+#  'Cherry Wax Yellow',
+#  'Grape Blue',
+#  'Grape Pink',
+#  'Grape White',
+#  'Grape White 2',
+#  'Grape White 3',
+#  'Grape White 4',
+#  'Grapefruit Pink',
+#  'Grapefruit White',
+#  'Guava',
+#  'Lychee',
+#  'Pineapple',
+#  'Pineapple Mini',
+#  'Rambutan',
+#  'Raspberry',
+#  'Redcurrant',
+#  'Salak']
+
+def get_message(prompt):
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="gpt-3.5-turbo",
+    )
+    return chat_completion.choices[0].message.content
+
+# Give me the nutritional values of 1 {fruit} and the health benefits of these molecules.
+
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -70,9 +100,12 @@ def upload():
     alpha_composite.save(path, "JPEG")
     # Run the image through the model
     res = classify_images()
-    return {"upload": res}
+    # Get GPT message
+    message = get_message("Give me the nutritional values of 1 " + res + " and the health benefits of these molecules.")
+    return {"upload": message}
 
 def classify_images():
+    return "Apple"
     # Specify the directory containing images (Adjust the path as necessary)
     #test_subset = "C:\\Users\\benho\\OneDrive\\Desktop\\Ben\\Programs\\BH2024(2)\\brishackapp\\real_assets"
     test_subset = "./real_assets"
