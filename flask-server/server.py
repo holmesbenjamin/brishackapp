@@ -3,6 +3,9 @@ import numpy as np
 import tensorflow as tf
 from keras.models import load_model
 import base64
+from io import BytesIO
+from rembg import remove 
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -50,18 +53,22 @@ tr_class_names = ['Apple Braeburn',
  'Raspberry',
  'Redcurrant',
  'Salak']
+
 @app.route('/upload', methods=['POST'])
 def upload():
+    # Parse the uploaded image
     string = request.json
     if "," in string:
         string = string.split(",")[1]
-    print(request.json, flush=True) 
     path = "./real_assets/Assets/test.jpeg"
-    bdata= base64.b64decode(string)
-    print(bdata, flush=True)
-    with open(path, "wb") as f:
-        f.write(bdata)
-    
+    bdata = base64.b64decode(string)
+    # Make the image transparent (white bg)
+    og_file = Image.open(BytesIO(bdata))
+    transparent_file = remove(og_file).convert("RGBA")
+    background = Image.new('RGBA', transparent_file.size, (255, 255, 255))
+    alpha_composite = Image.alpha_composite(background, transparent_file).convert("RGB")
+    alpha_composite.save(path, "JPEG")
+    # Run the image through the model
     res = classify_images()
     return {"upload": res}
 
@@ -88,7 +95,7 @@ def classify_images():
             predictions.append({"class": predicted_class, "confidence": confidence})
         else:
             predictions.append({"class": "No Fruit Detected", "confidence": 0})
-    return jsonify(predictions)
+    return predictions
 
 @app.route('/test')
 def test():
