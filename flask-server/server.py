@@ -8,14 +8,12 @@ from rembg import remove
 from PIL import Image
 from openai import OpenAI
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
 app = Flask(__name__)
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key=os.getenv("KEY"),
+    api_key="KEY",
 )
 
 chat_completion = client.chat.completions.create(
@@ -30,8 +28,8 @@ chat_completion = client.chat.completions.create(
 print(chat_completion.choices[0].message.content)
 # Load the trained model (Adjust the path as necessary)
 #model_path = 'C:\\Users\\benho\\OneDrive\\Desktop\\Ben\\Programs\\BH2024(2)\\brishackapp\\FruitModel.keras'
-model_path = './FruitModel.keras'
-model = load_model(model_path)
+# model_path = './FruitModel.keras'
+# model = load_model(model_path)
 IMAGE_SIZE = 100
 #All possible fruits
 tr_class_names = ['Apple Braeburn',
@@ -103,12 +101,12 @@ def upload():
     alpha_composite = Image.alpha_composite(background, transparent_file).convert("RGB")
     alpha_composite.save(path, "JPEG")
     # Run the image through the model
+    # res = "Apple"
     res = classify_images()
     # Get GPT message
     message = get_message("Give me the nutritional values of 1 " + res + " and the health benefits of these molecules.")
     return {"upload": message}
 
-@app.route('/classify')
 def classify_images():
     path = "./real_assets/Assets/test.jpeg"
     image = tf.keras.preprocessing.image.load_img(path, target_size=(IMAGE_SIZE, IMAGE_SIZE))
