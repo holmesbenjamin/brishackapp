@@ -8,11 +8,14 @@ from rembg import remove
 from PIL import Image
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 app = Flask(__name__)
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key="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",
+    api_key=os.getenv("KEY"),
 )
 
 chat_completion = client.chat.completions.create(
