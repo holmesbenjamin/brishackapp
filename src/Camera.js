@@ -14,7 +14,8 @@ function Camera(props) {
     setImg(imageSrc);
   }, [webcamRef]);
 
-  const refresh = useCallback(() => {
+  const reset = useCallback(() => {
+    props.onReset();
     setImg(null);
   }, []);
 
@@ -61,7 +62,7 @@ function Camera(props) {
             {/* New wrapper with border */}
             <img src={img} className={imageClassName} alt="captured" />
           </div>
-          <button onClick={refresh} className="reset-button">
+          <button onClick={reset} className="reset-button">
             Reset
           </button>
         </>

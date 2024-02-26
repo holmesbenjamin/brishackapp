@@ -6,9 +6,8 @@ import Logo from "./Logo";
 import Button from "./Button";
 
 function App() {
-  const [blurb, setBlurb] = useState(
-    "Take a picture of a fruit to identify it"
-  );
+  const str = "Take a picture of a fruit to identify it";
+  const [blurb, setBlurb] = useState(str);
 
   const onLoad = () => {
     setBlurb("Processing image...");
@@ -18,12 +17,16 @@ function App() {
     setBlurb(data);
   };
 
+  const onReset = () => {
+    setBlurb(str);
+  };
+
   return (
     <>
       <div className="app-container">
         <Logo />
         {/* <h1 className="app-title">FruitCam</h1>  */}
-        <Camera onLoad={onLoad} onFinish={onFinish} />
+        <Camera onLoad={onLoad} onFinish={onFinish} onReset={onReset} />
         <Blurb text={blurb} />
       </div>
     </>

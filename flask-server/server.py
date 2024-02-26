@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key="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",
+    api_key="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",
 )
 
 chat_completion = client.chat.completions.create(
